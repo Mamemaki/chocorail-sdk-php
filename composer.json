@@ -1,0 +1,22 @@
+{
+    "name": "mamemaki/chocorail-sdk-php",
+    "type": "library",
+    "description": "Chocorail SDK for PHP",
+    "homepage": "https://github.com/mamemaki/chocorail-sdk-php",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "chocorail",
+            "email": "info@chocorail.com"
+        }
+    ],
+    "require": {
+        "php": "^5.4 || ^7.0",
+        "guzzlehttp/guzzle": "~6.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Chocorail\\": "src/Chocorail"
+        }
+    }
+}
