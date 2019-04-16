@@ -76,6 +76,18 @@ class ShopPages
         return $result;
     }
 
+    public function getSnippets($params = [])
+    {
+        $result = $this->chocorail->get("/shoppages/snippets", $params);
+        return $result;
+    }
+
+    public function getSnippetEntries($snippetid, $params = [])
+    {
+        $result = $this->chocorail->get("/shoppages/snippets/{$snippetid}/entries", $params);
+        return $result;
+    }
+
     public function getGirlRankings($params = [])
     {
         $result = $this->chocorail->get("/shoppages/girlrankings", $params);
