@@ -82,12 +82,15 @@ class Chocorail
      *
      * @throws ChocorailException
      */
-    public function post($endpoint, array $params = [])
+    public function post($endpoint, array $params = [], $contentType = 'application/json')
     {
         return $this->sendRequest(
             'POST',
             $endpoint,
-            $params);
+            $params,
+            null,
+            null,
+            $contentType);
     }
 
     /**
@@ -134,12 +137,13 @@ class Chocorail
      * @param array                   $params
      * @param string|null             $apikey
      * @param string|null             $apiVersion
+     * @param string|null             $contentType
      *
      * @return ApiResponse
      *
      * @throws ChocorailException
      */
-    public function sendRequest($method, $endpoint, array $params = [], string $apikey = null, $apiVersion = null)
+    public function sendRequest($method, $endpoint, array $params = [], string $apikey = null, $apiVersion = null, $contentType = null)
     {
         $apikey = $apikey ?: $this->options['defaultApiKey'];
         $apiVersion = $apiVersion ?: $this->defaultApiVersion;
@@ -148,7 +152,8 @@ class Chocorail
             $method,
             $endpoint,
             $params,
-            $apiVersion
+            $apiVersion,
+            $contentType
         );
         return $this->lastResponse = $this->client->sendRequest($request);
     }

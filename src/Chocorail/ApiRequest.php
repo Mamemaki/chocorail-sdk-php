@@ -39,6 +39,11 @@ class ApiRequest
     protected $apiVersion;
 
     /**
+     * @var string 'application/json' or 'multipart/form-data'
+     */
+    protected $contentType;
+
+    /**
      * @var array The default headers that every request should use.
      */
     protected static $defaultHeaders = [
@@ -53,14 +58,16 @@ class ApiRequest
      * @param string|null             $endpoint
      * @param array|null              $params
      * @param string|null             $apiVersion
+     * @param string|null             $contentType
      */
-    public function __construct($apikey = null, $method = null, $endpoint = null, array $params = [], $apiVersion = null)
+    public function __construct($apikey = null, $method = null, $endpoint = null, array $params = [], $apiVersion = null, $contentType = null)
     {
         $this->setApikey($apikey);
         $this->setMethod($method);
         $this->setEndpoint($endpoint);
         $this->setParams($params);
         $this->apiVersion = $apiVersion ?: Chochorail::DEFAULT_API_VERSION;
+        $this->contentType = $contentType ?: 'application/json';
     }
 
     /**
@@ -206,5 +213,15 @@ class ApiRequest
     public function getApiVersion()
     {
         return $this->apiVersion;
+    }
+
+    /**
+     * The content type for this request.
+     *
+     * @return string
+     */
+    public function getContentType()
+    {
+        return $this->contentType;
     }
 }

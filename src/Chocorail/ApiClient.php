@@ -90,24 +90,26 @@ class ApiClient
         $params = $request->getParams();
 
         if ($method == 'POST' || $method == 'PUT' || $method == 'DELETE') {
-            // send parameters as Form
-            // $multipart = [];
-            // foreach ($params as $key => $val) {
-            //     if (is_array($val)) {
-            //         $valArray = (array)$val;
-            //         foreach ($valArray as $valArrayItem) {
-            //             $multipart[] = ['name' => (string)$key, 'contents' => (string)$valArrayItem];
-            //         }
-            //     } else {
-            //         $multipart[] = ['name' => (string)$key, 'contents' => (string)$val];
-            //     }
-            // }
-            // $ms = new Psr7\MultipartStream($multipart);
-            // $request = new Request($method, $url, $headers, $ms);
-
-            // send parameters as JSON
-            $headers['Content-Type'] = 'application/json';
-            $rawRequest = new Request($method, $url, $headers, json_encode($params));
+            if ($request->getContentType() == 'multipart/form-data') {
+                // send parameters as Form
+                $multipart = [];
+                foreach ($params as $key => $val) {
+                    if (is_array($val)) {
+                        $valArray = (array)$val;
+                        foreach ($valArray as $valArrayItem) {
+                            $multipart[] = ['name' => (string)$key, 'contents' => (string)$valArrayItem];
+                        }
+                    } else {
+                        $multipart[] = ['name' => (string)$key, 'contents' => (string)$val];
+                    }
+                }
+                $ms = new Psr7\MultipartStream($multipart);
+                $rawRequest = new Request($method, $url, $headers, $ms);
+            } else {
+                // send parameters as JSON
+                $headers['Content-Type'] = 'application/json';
+                $rawRequest = new Request($method, $url, $headers, json_encode($params));
+            }
         } else {
             // send parameters as Query String
             $qs = \GuzzleHttp\Psr7\build_query($params);

@@ -88,6 +88,12 @@ class ShopPages
         return $result;
     }
 
+    public function getSnippetEntry($snippetid, $snippetEntryId, $params = [])
+    {
+        $result = $this->chocorail->get("/shoppages/snippets/{$snippetid}/entries/{$snippetEntryId}", $params);
+        return $result;
+    }
+
     public function getGirlRankings($params = [])
     {
         $result = $this->chocorail->get("/shoppages/girlrankings", $params);
@@ -112,16 +118,27 @@ class ShopPages
         return $result;
     }
 
-    public function sendMail(string $subject, string $body, mixed $additional_headers = NULL)
+    public function sendMail(array $tos, string $subject, string $bodyHtml, string $bodyText = null, 
+        array $ccs = array(), array $bccs = array())
     {
         $params = [
             'subject' => $subject,
-            'body' => $body,
+            'bodyHtml' => $bodyHtml,
+            'bodyText' => $bodyText,
         ];
+        for ($i=0; $i < count($tos); $i++) { 
+            $params['to['.$i.']'] = $tos[$i];
+        }
+        for ($i=0; $i < count($ccs); $i++) { 
+            $params['cc['.$i.']'] = $ccs[$i];
+        }
+        for ($i=0; $i < count($bccs); $i++) { 
+            $params['bcc['.$i.']'] = $bccs[$i];
+        }
         if (isset($additional_headers)) {
             $params = array_merge($params, $additional_headers);
         }
-        $result = $this->chocorail->post("/shoppages/mail/send", $params);
+        $result = $this->chocorail->post("/shoppages/mail/send", $params, 'multipart/form-data');
         return $result;
     }
 
