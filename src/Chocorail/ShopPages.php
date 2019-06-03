@@ -22,6 +22,12 @@ class ShopPages
         return $result;
     }
 
+    public function getGirlAttendanceTimesToday($params = [])
+    {
+        $result = $this->chocorail->get("/shoppages/girlattendancetimes/today", $params);
+        return $result;
+    }
+
     public function getGirlAttendanceTimes($params = [])
     {
         $result = $this->chocorail->get("/shoppages/girlattendancetimes", $params);
