@@ -1,7 +1,7 @@
 <?php
 namespace Chocorail\Exceptions;
 
-use CHocorail\Exceptions\ChocorailException;
+use Chocorail\Exceptions\ChocorailException;
 
 /**
  * Class ApiClientException
