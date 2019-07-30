@@ -34,9 +34,27 @@ class ShopPages
         return $result;
     }
 
+    public function getGirlBlogs($params = [])
+    {
+        $result = $this->chocorail->get("/shoppages/girlblogs", $params);
+        return $result;
+    }
+
+    public function getGirlBlog($girlblogid)
+    {
+        $result = $this->chocorail->get("/shoppages/girlblogs/{$girlblogid}");
+        return $result;
+    }
+
     public function getGirlBlogPosts($girlblogid, $params = [])
     {
         $result = $this->chocorail->get("/shoppages/girlblogs/{$girlblogid}/posts", $params);
+        return $result;
+    }
+
+    public function getGirlBlogPost($girlblogid, $girlblogpostid)
+    {
+        $result = $this->chocorail->get("/shoppages/girlblogs/{$girlblogid}/posts/{$girlblogpostid}");
         return $result;
     }
 
@@ -46,9 +64,21 @@ class ShopPages
         return $result;
     }
 
+    public function getGirlTagList($girltaglistid)
+    {
+        $result = $this->chocorail->get("/shoppages/girltaglists/{$girltaglistid}");
+        return $result;
+    }
+
     public function getGirlTagListTags($girltaglistid, $params = [])
     {
         $result = $this->chocorail->get("/shoppages/girltaglists/{$girltaglistid}/tags", $params);
+        return $result;
+    }
+
+    public function getGirlTagListTag($girltaglistid, $girltagid)
+    {
+        $result = $this->chocorail->get("/shoppages/girltaglists/{$girltaglistid}/tags/{$girltagid}");
         return $result;
     }
 
@@ -64,9 +94,21 @@ class ShopPages
         return $result;
     }
 
+    public function getGirlServiceList($girlservicelistid)
+    {
+        $result = $this->chocorail->get("/shoppages/girlservicelists/{$girlservicelistid}");
+        return $result;
+    }
+
     public function getGirlServiceListServices($girlservicelistid, $params = [])
     {
         $result = $this->chocorail->get("/shoppages/girlservicelists/{$girlservicelistid}/services", $params);
+        return $result;
+    }
+
+    public function getGirlServiceListService($girlservicelistid, $girlserviceid)
+    {
+        $result = $this->chocorail->get("/shoppages/girlservicelists/{$girlservicelistid}/services/{$girlserviceid}");
         return $result;
     }
 
@@ -76,15 +118,33 @@ class ShopPages
         return $result;
     }
 
+    public function getNewsSingle($newsid)
+    {
+        $result = $this->chocorail->get("/shoppages/news/{$newsid}");
+        return $result;
+    }
+
     public function getNewsPosts($newsid, $params = [])
     {
         $result = $this->chocorail->get("/shoppages/news/{$newsid}/posts", $params);
         return $result;
     }
 
+    public function getNewsPost($newsid, $newspostid)
+    {
+        $result = $this->chocorail->get("/shoppages/news/{$newsid}/posts/{$newspostid}");
+        return $result;
+    }
+
     public function getSnippets($params = [])
     {
         $result = $this->chocorail->get("/shoppages/snippets", $params);
+        return $result;
+    }
+
+    public function getSnippet($snippetid)
+    {
+        $result = $this->chocorail->get("/shoppages/snippets/{$snippetid}");
         return $result;
     }
 
@@ -106,21 +166,39 @@ class ShopPages
         return $result;
     }
 
+    public function getGirlRanking($rankingid)
+    {
+        $result = $this->chocorail->get("/shoppages/girlrankings/{$rankingid}");
+        return $result;
+    }
+
     public function getGirlRankingEntries($rankingid, $params = [])
     {
         $result = $this->chocorail->get("/shoppages/girlrankings/{$rankingid}/entries", $params);
         return $result;
     }
 
-    public function getLinkLists($linklistid, $params = [])
+    public function getLinkLists($params = [])
     {
-        $result = $this->chocorail->get("/shoppages/linklists/{$linklistid}", $params);
+        $result = $this->chocorail->get("/shoppages/linklists", $params);
+        return $result;
+    }
+
+    public function getLinkList($linklistid)
+    {
+        $result = $this->chocorail->get("/shoppages/linklists/{$linklistid}");
         return $result;
     }
 
     public function getLinkListLinks($linklistid, $params = [])
     {
         $result = $this->chocorail->get("/shoppages/linklists/{$linklistid}/links", $params);
+        return $result;
+    }
+
+    public function getLinkListLink($linklistid, $linkid)
+    {
+        $result = $this->chocorail->get("/shoppages/linklists/{$linklistid}/links/{$linkid}");
         return $result;
     }
 
@@ -171,7 +249,7 @@ class ShopPages
         return $result;
     }
 
-    public function getMembers($linklistid, $params = [])
+    public function getMembers($params = [])
     {
         $result = $this->chocorail->get("/shoppages/members", $params);
         return $result;
@@ -216,9 +294,21 @@ class ShopPages
         return $result;
     }
 
+    public function getMemberTagList($membertaglistid)
+    {
+        $result = $this->chocorail->get("/shoppages/membertaglists/{$membertaglistid}");
+        return $result;
+    }
+
     public function getMemberTagListTags($membertaglistid, $params = [])
     {
         $result = $this->chocorail->get("/shoppages/membertaglists/{$membertaglistid}/tags", $params);
+        return $result;
+    }
+
+    public function getMemberTagListTag($membertaglistid, $membertagid)
+    {
+        $result = $this->chocorail->get("/shoppages/membertaglists/{$membertaglistid}/tags/{$membertagid}");
         return $result;
     }
 
